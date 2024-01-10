@@ -1,5 +1,15 @@
+import { useEffect, useState } from "react";
 
 const Footer = () => {
+    const [year, setYear] = useState(new Date().getFullYear());
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setYear(new Date.getFullYear());
+        }, 1000)
+        // Update every second by 1000 milliseconds.
+        return () => clearInterval(interval);
+    }, [])
     return (
         <div>
             <footer className="footer p-10 bg-neutral text-neutral-content">
@@ -18,7 +28,7 @@ const Footer = () => {
             </footer>
             <footer className="footer footer-center p-4 bg-base-300 text-base-content">
                 <aside>
-                    <p>Copyright © 2024 - All right reserved by ACME Industries Ltd</p>
+                    <p>Copyright © {year} - All right reserved by ACME Industries Ltd</p>
                 </aside>
             </footer>
         </div>
